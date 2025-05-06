@@ -1,1 +1,21 @@
 #!/usr/bin/env bash
+
+# the above tells the system to runt his script using bash, this makes it portable across systems
+
+#check for bucket name
+
+if [ -z "$1" ]; then
+
+#the above -z is the first argument and "$1" is empty. so tis checking if the first argument is empty
+    echo "There needs to be a bucket name eg. ./bucket my-bucket-name"
+    exit 1
+fi
+
+BUCKET_NAME=$1
+
+# echo "aws s3api create-bucket --bucket $BUCKET_NAME" --create-bucket-configuration
+
+# i was trying to make the below work, but apparentlyu you dont need the location if ytour using us-east-1
+# aws s3api create-bucket --bucket $BUCKET_NAME --create-bucket-configuration LocationConstraint=us-east-1
+
+aws s3api create-bucket --bucket $BUCKET_NAME
